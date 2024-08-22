@@ -23,30 +23,30 @@ enum Value{
 
 class Card {
     private:
-        Value rank;
+        Value value;
         Suit suit;
     public:
 
-        Card(Suit s, Value value){
+        Card(Suit s, Value val){
             suit = s;
-            rank = value;
+            value = val;
         }
 
         void printCard(Card card){
             //TODO
         }
         
-        void setValue(Value value){
-            rank = value;
+        void setValue(Value val){
+            value = value;
             //TODO
         }
 
-        void setSuit(Suit suit){
+        void setSuit(Suit s){
             //TODO
         }
 
         Value getValue(){
-            return rank;
+            return value;
             //TODO
         }
         Suit getSuit(){
