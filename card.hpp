@@ -22,16 +22,17 @@ enum Value{
 };
 
 class Card {
-
-    public:
+    private:
         Value value;
         Suit suit;
+    public:
 
         void printCard(Card card){
             //TODO
         }
         
         void setValue(Value value){
+            value = value;
             //TODO
         }
 
@@ -40,6 +41,7 @@ class Card {
         }
 
         Value getValue(){
+            return value;
             //TODO
         }
         Suit getSuit(){
