@@ -10,5 +10,6 @@ int main(){
     Value testValue = test.getValue();
     assert(testValue == 1);
     std::cout << "Test 2 passed!\n";
+    test.printCard();
     return 0;
 }

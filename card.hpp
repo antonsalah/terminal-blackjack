@@ -28,21 +28,9 @@ class Card {
     public:
 
         Card(Suit s, Value val){
+            //add sanity checks later
             suit = s;
-            value = val;
-        }
-
-        void printCard(Card card){
-            //TODO
-        }
-        
-        void setValue(Value val){
-            value = value;
-            //TODO
-        }
-
-        void setSuit(Suit s){
-            //TODO
+            value = val;        
         }
 
         Value getValue(){
@@ -53,6 +41,22 @@ class Card {
             return suit;
             //TODO
         }
+
+        void printCard(){
+            const char* cardTemplate = 
+                "---------------------\n"
+                "|                   |\n"
+                "|                   |\n"
+                "|                   |\n"
+                "|                   |\n"
+                "|                   |\n"
+                "|                   |\n"
+                "|                   |\n"
+                "---------------------\n";
+
+                std::cout << cardTemplate;
+        }
+
 
 
 };
