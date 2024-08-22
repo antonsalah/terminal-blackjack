@@ -5,17 +5,33 @@ enum Suit{
     spade = 3
 };
 
+enum Value{
+    Ace = 1,
+    two = 2,
+    three = 3,
+    four = 4,
+    five = 5,
+    six = 6,
+    seven = 7,
+    eight = 8,
+    nine = 9,
+    ten = 10,
+    jack = 11,
+    queen = 12,
+    king = 13
+};
+
 class Card {
 
     public:
-        char value;
+        Value value;
         Suit suit;
 
         void printCard(Card card){
             //TODO
         }
         
-        void setValue(char value){
+        void setValue(Value value){
             //TODO
         }
 
@@ -23,7 +39,7 @@ class Card {
             //TODO
         }
 
-        int getValue(){
+        Value getValue(){
             //TODO
         }
         Suit getSuit(){
