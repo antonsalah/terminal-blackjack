@@ -6,7 +6,7 @@ enum Suit{
 };
 
 enum Value{
-    Ace = 1,
+    ace = 1,
     two = 2,
     three = 3,
     four = 4,
@@ -23,16 +23,21 @@ enum Value{
 
 class Card {
     private:
-        Value value;
+        Value rank;
         Suit suit;
     public:
+
+        Card(Suit s, Value value){
+            suit = s;
+            rank = value;
+        }
 
         void printCard(Card card){
             //TODO
         }
         
         void setValue(Value value){
-            value = value;
+            rank = value;
             //TODO
         }
 
@@ -41,10 +46,11 @@ class Card {
         }
 
         Value getValue(){
-            return value;
+            return rank;
             //TODO
         }
         Suit getSuit(){
+            return suit;
             //TODO
         }
 
