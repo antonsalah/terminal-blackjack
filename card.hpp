@@ -1,12 +1,12 @@
 enum Suit{
-    heart = 0,
-    diamond = 1,   
-    club = 2,
-    spade = 3
+    heart,
+    diamond,   
+    club,
+    spade
 };
 
 enum Value{
-    ace = 1,
+    ace = 'A',
     two = 2,
     three = 3,
     four = 4,
@@ -16,9 +16,9 @@ enum Value{
     eight = 8,
     nine = 9,
     ten = 10,
-    jack = 11,
-    queen = 12,
-    king = 13
+    jack = 'J',
+    queen = 'Q',
+    king = 'K'
 };
 
 class Card {
@@ -43,18 +43,13 @@ class Card {
         }
 
         void printCard(){
-            const char* cardTemplate = 
-                "---------------------\n"
-                "|                   |\n"
-                "|                   |\n"
-                "|                   |\n"
-                "|                   |\n"
-                "|                   |\n"
-                "|                   |\n"
-                "|                   |\n"
-                "---------------------\n";
-
-                std::cout << cardTemplate;
+            Value val = value;
+            Suit s = suit;
+            std::cout << ".-----."<< std::endl;
+            std::cout << "|" << val << "    |" <<std::endl;
+            std::cout << "|  " << s << "  |" << std::endl;
+            std::cout << "|    " <<val<<"|" << std::endl;
+            std::cout << "'-----'" << std::endl;
         }
 
 
