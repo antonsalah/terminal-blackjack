@@ -18,7 +18,13 @@ int main(){
 
 
     test.printCard();
-    std::wcout << test.getSuitSymbol() << std::endl;
     std::wcout << "Test 3 Passed! \n";
+
+    Card test2(diamond,ten);
+    test2.printCard();
+    
+    Card test3(heart,queen);
+    test3.printCard();
+
     return 0;
 }
