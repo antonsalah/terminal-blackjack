@@ -1,3 +1,5 @@
+#pragma once
+#include <iostream>
 #include <string>
 enum Suit{
     heart,
@@ -21,7 +23,6 @@ enum Value{
     queen,
     king
 };
-
 class Card {
     private:
         Value value;
@@ -36,6 +37,8 @@ class Card {
                 std::wcout << "OBJECT PARAMETERS NOT VALID!!!!\n";
             }
         }
+
+        Card()= default;
 
         char getValue(){
             const char enumArr[] = {'A','2','3','4','5','6','7','8','9','T','J','Q','K'};
