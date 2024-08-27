@@ -1,3 +1,4 @@
+#include <string>
 enum Suit{
     heart,
     diamond,   
@@ -6,19 +7,19 @@ enum Suit{
 };
 
 enum Value{
-    ace = 'A',
-    two = 2,
-    three = 3,
-    four = 4,
-    five = 5,
-    six = 6,
-    seven = 7,
-    eight = 8,
-    nine = 9,
-    ten = 10,
-    jack = 'J',
-    queen = 'Q',
-    king = 'K'
+    ace, 
+    two, 
+    three,
+    four,
+    five,
+    six,
+    seven,
+    eight,
+    nine,
+    ten,
+    jack,
+    queen,
+    king
 };
 
 class Card {
@@ -28,28 +29,53 @@ class Card {
     public:
 
         Card(Suit s, Value val){
-            //add sanity checks later
-            suit = s;
-            value = val;        
+            if ((s >= heart && s <= spade) && (val >= ace && val <= king)){
+                suit = s;
+                value = val;
+            }else{
+                std::wcout << "OBJECT PARAMETERS NOT VALID!!!!\n";
+            }
         }
 
-        Value getValue(){
-            return value;
-            //TODO
+        char getValue(){
+            const char enumArr[] = {'A','2','3','4','5','6','7','8','9','T','J','Q','K'};
+                return enumArr[value];
         }
         Suit getSuit(){
             return suit;
-            //TODO
+        }
+
+        std::wstring getSuitSymbol(){
+
+            switch(suit){
+                case heart:
+                    return L"♥";
+                    break;
+
+                case diamond:
+                    return L"♦";
+                    break;
+
+                case club:
+                    return L"♣";
+                    break;
+
+                case spade:
+                    return L"♠";
+                    break;
+
+                default:
+                    std::wcout << "ERROR CANT FIND SYMBOL!!!\n";
+                    return L"?";
+            }
         }
 
         void printCard(){
-            Value val = value;
-            Suit s = suit;
-            std::cout << ".-----."<< std::endl;
-            std::cout << "|" << val << "    |" <<std::endl;
-            std::cout << "|  " << s << "  |" << std::endl;
-            std::cout << "|    " <<val<<"|" << std::endl;
-            std::cout << "'-----'" << std::endl;
+            std::wcout << ".-----."<< std::endl;
+            std::wcout << "|" << getValue() << "    |" <<std::endl;
+            std::wcout << "|  " << getSuitSymbol() << "  |" << std::endl;
+            std::wcout << "|    " <<getValue()<<"|" << std::endl;
+            std::wcout << "'-----'" << std::endl;
         }
 
 
