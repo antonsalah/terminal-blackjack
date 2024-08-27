@@ -2,13 +2,21 @@
 #include <cstdlib>
 #include "card.hpp"
 
+const int handSize = 20;
 class Player{
     private:
-    Card hand[20];
+    Card hand[handSize];
+    int currIndex = 0;
 
     public:
 
     void addCard(Card newCard){
+        if(currIndex < handSize){
+            hand[currIndex] = newCard;
+            currIndex++;
+        }else{
+           //incase hand gets to big
+        }
 
     }
 
@@ -21,7 +29,7 @@ class Player{
         Value val = static_cast<Value>(randNumGen % 13);
 
         Card newCard(s,val);
-        //addCard(newCard);
+        addCard(newCard);
     }
 
     void clearHand(){
