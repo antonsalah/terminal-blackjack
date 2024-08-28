@@ -8,15 +8,19 @@ class Player{
         std::vector<Card*> hand;
         unsigned score = 0;
 
-    public:
-
-        Player(){}
-
-
         void addCard(Card* newCard){
             add2Score(*newCard);
             hand.push_back(newCard);
         }
+
+        void add2Score(Card newCard){
+            int newAddition = newCard.getValue();
+            score += newAddition;
+        }
+
+    public:
+
+        Player(){}
 
         void drawCard(){
             Sleep(50); //Ensures that back-to-back drawings produces different cards.
@@ -36,11 +40,6 @@ class Player{
 
         unsigned getScore(){
             return score;
-        }
-
-        void add2Score(Card newCard){
-            int newAddition = newCard.getValue();
-            score += newAddition;
         }
 
         void clearHand(){
