@@ -23,9 +23,11 @@ int main(){
     std::wcout << "Test 3 Passed!" << std::endl;
 
     Card test2(Suit::diamond,Value::ten);
+    std::wcout << "This should print a ten of diamonds" << std::endl;
     test2.printCard();
     
     Card test3(Suit::heart,Value::queen);
+    std::wcout << "This should print a Queen of Hearts" << std::endl;
     test3.printCard();
 
     std::wcout << "Test 4 Passed!" << std::endl;
