@@ -1,38 +1,52 @@
 #include <ctime>
 #include <cstdlib>
 #include "card.hpp"
+#include <windows.h>
 
 const int handSize = 20;
 class Player{
     private:
     Card hand[handSize];
-    int currIndex = 0;
+    int currIndex;
 
     public:
 
-    void addCard(Card newCard){
-        if(currIndex < handSize){
-            hand[currIndex] = newCard;
-            currIndex++;
-        }else{
-           //incase hand gets to big
+        Player(){
+            currIndex = 0;
         }
 
-    }
 
-    void drawCard(){
-        //do check handeling. IE see if the hand if full and do stuff if so.
-        std::srand((unsigned)std::time(NULL));
-        int randNumGen = rand() % 52; 
+        void addCard(Card newCard){
+            if(currIndex < handSize){
+                hand[currIndex] = newCard;
+                currIndex++;
+            }else{
+            //incase hand gets to big
+            }
 
-        Suit s = static_cast<Suit>(randNumGen % 4);
-        Value val = static_cast<Value>(randNumGen % 13);
+        }
 
-        Card newCard(s,val);
-        addCard(newCard);
-    }
+        void drawCard(){
+            Sleep(50); //Ensures that back-to-back drawings produces different cards.
+            int randTime = GetTickCount();
+            std::srand((unsigned)randTime);
+            std::wcout << randTime << std::endl;
+            int randNumGen = rand() % 52; 
 
-    void clearHand(){
-        //todo
-    }
+            Suit s = static_cast<Suit>(randNumGen % 4);
+            Value val = static_cast<Value>(randNumGen % 13);
+
+            Card newCard(s,val);
+            addCard(newCard);
+        }
+
+        void clearHand(){
+            //todo
+        }
+
+        void printHand(){
+            for(int i = 0; i < currIndex; i++){
+                hand[i].printCard();
+            }
+        }
 };
