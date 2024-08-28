@@ -4,13 +4,17 @@
 #include <vector>
 class Player{
     private:
-    std::vector<Card*> hand;
+
+        std::vector<Card*> hand;
+        unsigned score = 0;
+
     public:
 
         Player(){}
 
 
         void addCard(Card* newCard){
+            add2Score(*newCard);
             hand.push_back(newCard);
         }
 
@@ -26,11 +30,25 @@ class Player{
             addCard(newCard);
         }
 
+        Card* getLatestCard(){
+            return hand.back();
+        }
+
+        unsigned getScore(){
+            return score;
+        }
+
+        void add2Score(Card newCard){
+            int newAddition = newCard.getValue();
+            score += newAddition;
+        }
+
         void clearHand(){
             while(!hand.empty()){
                 delete hand.back();
                 hand.pop_back();
             }
+            score = 0;
         }
         void printHand(){
             if(!hand.empty()){
