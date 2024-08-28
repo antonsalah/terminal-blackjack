@@ -48,6 +48,7 @@ class Card {
                 int result = 10;
                 return result;
             }
+            return 0; //temp return for compiler warnings CHANGE LATER
             //else{ logic for ace}
         }
 
@@ -86,9 +87,9 @@ class Card {
 
         void printCard(){
             std::wcout << ".-----."<< std::endl;
-            std::wcout << "|" << getValue() << "    |" <<std::endl;
+            std::wcout << "|" << getValueSymbol() << "    |" <<std::endl;
             std::wcout << "|  " << getSuitSymbol() << "  |" << std::endl;
-            std::wcout << "|    " <<getValue()<<"|" << std::endl;
+            std::wcout << "|    " <<getValueSymbol()<<"|" << std::endl;
             std::wcout << "'-----'" << std::endl;
         }
 

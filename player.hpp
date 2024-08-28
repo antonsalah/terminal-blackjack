@@ -1,6 +1,4 @@
 #pragma once
-#include <ctime>
-#include <cstdlib>
 #include "card.hpp"
 #include <windows.h>
 #include <vector>
