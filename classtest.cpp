@@ -12,15 +12,15 @@ int main(){
 
     Suit testSuit = test.getSuit();
     assert(testSuit == spade);
-    std::wcout << "Test 1 pased!\n";
+    std::wcout << "Test 1 passed!" << std::endl;
 
     char testValue = test.getValue();
     assert(testValue == 'A');
-    std::wcout << "Test 2 passed!\n";
+    std::wcout << "Test 2 passed!" << std::endl;
 
 
     test.printCard();
-    std::wcout << "Test 3 Passed! \n";
+    std::wcout << "Test 3 Passed!" << std::endl;
 
     Card test2(Suit::diamond,Value::ten);
     test2.printCard();
@@ -28,7 +28,7 @@ int main(){
     Card test3(Suit::heart,Value::queen);
     test3.printCard();
 
-    std::wcout << "Test 4 Passed! \n";
+    std::wcout << "Test 4 Passed!" << std::endl;
 
     Player testPlayer;
     testPlayer.drawCard();
@@ -36,7 +36,12 @@ int main(){
     testPlayer.drawCard();
     testPlayer.printHand();
 
-    std::wcout << "Test 5 Passed! \n";
+    std::wcout << "Test 5 Passed!" << std::endl;
+
+    testPlayer.clearHand();
+    testPlayer.printHand();
+
+    std::wcout << "Test 6 Passed!" << std::endl;
 
     return 0;
 }
