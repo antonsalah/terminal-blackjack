@@ -40,7 +40,18 @@ class Card {
 
         Card()= default;
 
-        char getValue(){
+        int getValue(){
+            if(value > ace && value < jack){
+                int result = value+1;
+                return result;
+            }else if(value >= jack){
+                int result = 10;
+                return result;
+            }
+            //else{ logic for ace}
+        }
+
+        char getValueSymbol(){
             const char enumArr[] = {'A','2','3','4','5','6','7','8','9','T','J','Q','K'};
                 return enumArr[value];
         }

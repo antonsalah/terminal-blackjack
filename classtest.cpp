@@ -14,7 +14,7 @@ int main(){
     assert(testSuit == spade);
     std::wcout << "Test 1 passed!" << std::endl;
 
-    char testValue = test.getValue();
+    char testValue = test.getValueSymbol();
     assert(testValue == 'A');
     std::wcout << "Test 2 passed!" << std::endl;
 
