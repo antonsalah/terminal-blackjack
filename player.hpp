@@ -17,9 +17,7 @@ class Player{
 
         void drawCard(){
             Sleep(50); //Ensures that back-to-back drawings produces different cards.
-            int randTime = GetTickCount();
-            std::srand((unsigned)randTime);
-            std::wcout << randTime << std::endl;
+            std::srand((unsigned)GetTickCount());
             int randNumGen = rand() % 52; 
 
             Suit s = static_cast<Suit>(randNumGen % 4);
