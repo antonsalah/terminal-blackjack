@@ -2,28 +2,17 @@
 #include <cstdlib>
 #include "card.hpp"
 #include <windows.h>
-
-const int handSize = 20;
+#include <vector>
 class Player{
     private:
-    Card hand[handSize];
-    int currIndex;
-
+    std::vector<Card*> hand;
     public:
 
-        Player(){
-            currIndex = 0;
-        }
+        Player(){}
 
 
-        void addCard(Card newCard){
-            if(currIndex < handSize){
-                hand[currIndex] = newCard;
-                currIndex++;
-            }else{
-            //incase hand gets to big
-            }
-
+        void addCard(Card* newCard){
+            hand.push_back(newCard);
         }
 
         void drawCard(){
@@ -36,7 +25,7 @@ class Player{
             Suit s = static_cast<Suit>(randNumGen % 4);
             Value val = static_cast<Value>(randNumGen % 13);
 
-            Card newCard(s,val);
+            Card* newCard = new Card(s,val);
             addCard(newCard);
         }
 
@@ -45,8 +34,8 @@ class Player{
         }
 
         void printHand(){
-            for(int i = 0; i < currIndex; i++){
-                hand[i].printCard();
+            for(unsigned i = 0; i < hand.size(); i++){
+                hand[i]->printCard();
             }
         }
 };
