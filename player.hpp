@@ -30,12 +30,16 @@ class Player{
         }
 
         void clearHand(){
-            //todo
+            while(!hand.empty()){
+                delete hand.back();
+                hand.pop_back();
+            }
         }
-
         void printHand(){
-            for(unsigned i = 0; i < hand.size(); i++){
-                hand[i]->printCard();
+            if(!hand.empty()){
+                for(unsigned i = 0; i< hand.size(); i++){
+                    hand[i] -> printCard();
+                }
             }
         }
 };
