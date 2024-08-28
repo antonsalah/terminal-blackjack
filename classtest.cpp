@@ -1,3 +1,5 @@
+#include <windows.h>
+#include "player.hpp"
 #include <iostream>
 #include <string>
 #include "card.hpp"
@@ -5,7 +7,7 @@
 #include <fcntl.h>
 #include <assert.h>
 int main(){
-    Card test(spade,ace);
+    Card test(Suit::spade,Value::ace);
     _setmode(_fileno(stdout), _O_U16TEXT);
 
     Suit testSuit = test.getSuit();
@@ -20,11 +22,21 @@ int main(){
     test.printCard();
     std::wcout << "Test 3 Passed! \n";
 
-    Card test2(diamond,ten);
+    Card test2(Suit::diamond,Value::ten);
     test2.printCard();
     
-    Card test3(heart,queen);
+    Card test3(Suit::heart,Value::queen);
     test3.printCard();
+
+    std::wcout << "Test 4 Passed! \n";
+
+    Player testPlayer;
+    testPlayer.drawCard();
+    testPlayer.drawCard();
+    testPlayer.drawCard();
+    testPlayer.printHand();
+
+    std::wcout << "Test 5 Passed! \n";
 
     return 0;
 }
