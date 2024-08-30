@@ -49,6 +49,7 @@ class Player{
             }
             score = 0;
         }
+
         void printHand(){
             if(!hand.empty()){
                 for(unsigned i = 0; i< hand.size(); i++){
