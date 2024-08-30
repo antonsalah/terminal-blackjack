@@ -6,6 +6,8 @@
 #include <io.h>
 #include <fcntl.h>
 #include <assert.h>
+#include "game.hpp"
+
 int main(){
     _setmode(_fileno(stdout), _O_U16TEXT);
     
@@ -55,6 +57,14 @@ int main(){
     std::wcout << "Test 6.1 Passed!" << std::endl;
     assert(testPlayer.getScore() == 0);
     std::wcout << "All of Tests 6 Passed!" << std::endl;
+
+    bool done = false;
+    Game game;
+    while(!done){
+       game.startRound();
+       game.play();
+       game.determineWinner(); 
+    }
 
     return 0;
 }
