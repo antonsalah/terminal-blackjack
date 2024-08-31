@@ -97,16 +97,14 @@ class Game{
         int play(){
             bool done = false;
             while(!done){
-                std::wcout << "Your Hand" << std::endl;
-                user.printHand();
-                std::wcout << "Your current score " << user.getScore() << std::endl;
+                printTable();
                 switch(getPlayerChoice()){
 
                     case Hit:
                         user.drawCard();
                         if(user.getScore() > 21){
                             if(user.replaceAce() == -1){
-                                std::wcout << "Your total is" << user.getScore() << ". You Busted" << std::endl;
+                                std::wcout << "Your total is " << user.getScore() << ". You Busted" << std::endl;
                                 done = true;
                             }
                         }
@@ -124,6 +122,16 @@ class Game{
                 }
             }
             return 0;
+        }
+
+        void printTable(){
+            std::wcout << "The Dealer's Hand" << std::endl;
+            dealer.printHand();
+            std::wcout << "The Dealer's Score is " << dealer.getScore() << std::endl;
+            std::wcout << "Your Hand" << std::endl;
+            user.printHand();
+            std::wcout << "Your Score is " << user.getScore() << std::endl;
+
         }
 
         void runGame(){
