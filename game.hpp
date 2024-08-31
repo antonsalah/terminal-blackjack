@@ -130,4 +130,17 @@ class Game{
             return 0;
         }
 
+        void runGame(){
+            bool done = false;
+            while(!done){
+                startRound();
+                if(play() == -1){
+                    break;
+                }
+                playDealer();
+                determineWinner(); 
+                resetRound();
+            }
+        }
+
 };

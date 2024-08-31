@@ -58,18 +58,9 @@ int main(){
     assert(testPlayer.getScore() == 0);
     std::wcout << "All of Tests 6 Passed!" << std::endl;
 
-    bool done = false;
     Game game;
-    while(!done){
-        game.startRound();
-        if(game.play() == -1){
-            break;
-        }
-        //game.play();
-        game.playDealer();
-        game.determineWinner(); 
-        game.resetRound();
-    }
+
+    game.runGame();
 
     return 0;
 }
