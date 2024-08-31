@@ -1,6 +1,8 @@
 #include "player.hpp"
 #include "card.hpp" 
 
+//FUTURE NOTE TO SELF. So i got it to kind of work. Needs a lot of refinement to make sure the game logic is all there. Focus on the primary
+//gameplay loop and go from there. Also make sure that the code makes logical sense like card and player classes do
 enum playerOptions{
     Hit,
     Stay,
@@ -35,14 +37,9 @@ class Game{
             dealer.printHand();
 
             std::wcout << "Your Hand" << std::endl; 
-            user.printHand();
         }
 
         playerOptions getPlayerChoice(){
-            //todo
-            //get player input
-            //check to see if valid choice
-            //return option
 
             std::wcout << "Press H(it), S(tay), Q(uit)" << std::endl;
             char input;
@@ -73,8 +70,9 @@ class Game{
             unsigned runningScore = dealer.getScore();
             while(runningScore < 17){
                 dealer.drawCard();
+                runningScore = dealer.getScore();
             }
-            std::wcout << "The dealer is done. The dealer's score is " << runningScore;
+            std::wcout << "The dealer is done. The dealer's score is " << runningScore << std::endl;
 
         }
 
@@ -101,9 +99,10 @@ class Game{
             }
         }
 
-        void play(){
+        int play(){
             bool done = false;
             while(!done){
+                std::wcout << "Your Hand" << std::endl;
                 user.printHand();
                 switch(getPlayerChoice()){
 
@@ -118,18 +117,17 @@ class Game{
 
                     case Stay:
                         done = true;
-
                         break;
 
                     case Quit:
                         resetRound();// this needs to be changed to actually quit the program
-                        break;
+                        return -1;
 
                     default:
                         std::wcout <<"Unknown Command" << std::endl;
                 }
             }
-            playDealer();
+            return 0;
         }
 
 };

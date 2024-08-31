@@ -61,9 +61,14 @@ int main(){
     bool done = false;
     Game game;
     while(!done){
-       game.startRound();
-       game.play();
-       game.determineWinner(); 
+        game.startRound();
+        if(game.play() == -1){
+            break;
+        }
+        //game.play();
+        game.playDealer();
+        game.determineWinner(); 
+        game.resetRound();
     }
 
     return 0;
