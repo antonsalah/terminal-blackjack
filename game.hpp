@@ -1,8 +1,6 @@
 #include "player.hpp"
 #include "card.hpp" 
 
-//FUTURE NOTE TO SELF. So i got it to kind of work. Needs a lot of refinement to make sure the game logic is all there. Focus on the primary
-//gameplay loop and go from there. Also make sure that the code makes logical sense like card and player classes do
 enum playerOptions{
     Hit,
     Stay,
@@ -27,7 +25,6 @@ class Game{
         }
 
         void startRound(){
-            //todo: deal starting cards to user and first card to dealer
             user.drawCard();
             user.drawCard();
             dealer.drawCard();
@@ -36,7 +33,7 @@ class Game{
 
             dealer.printHand();
 
-            std::wcout << "Your Hand" << std::endl; 
+            //std::wcout << "Your Hand" << std::endl; 
         }
 
         playerOptions getPlayerChoice(){
@@ -63,9 +60,7 @@ class Game{
             }
         }
 
-        void playDealer(){//need to return who wins//
-            //todo
-            //Once player makes their choice, play out the dealer according to rules, then decide who wins
+        void playDealer(){
             dealer.drawCard();
             unsigned runningScore = dealer.getScore();
             while(runningScore < 17){
@@ -104,15 +99,17 @@ class Game{
             while(!done){
                 std::wcout << "Your Hand" << std::endl;
                 user.printHand();
+                std::wcout << "Your current score " << user.getScore() << std::endl;
                 switch(getPlayerChoice()){
 
                     case Hit:
                         user.drawCard();
                         if(user.getScore() > 21){
-                            std::wcout << "Your total is " << user.getScore() << ". You busted" << std::endl;
-                            done = true;
+                            if(user.replaceAce() == -1){
+                                std::wcout << "Your total is" << user.getScore() << ". You Busted" << std::endl;
+                                done = true;
+                            }
                         }
-
                         break;
 
                     case Stay:
@@ -120,11 +117,10 @@ class Game{
                         break;
 
                     case Quit:
-                        resetRound();// this needs to be changed to actually quit the program
                         return -1;
 
                     default:
-                        std::wcout <<"Unknown Command" << std::endl;
+                        std::wcout <<"Unknown Command" << std::endl; //might change this to be blank to allow retyping of choice
                 }
             }
             return 0;

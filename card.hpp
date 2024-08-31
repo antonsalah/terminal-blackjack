@@ -21,7 +21,8 @@ enum Value{
     ten,
     jack,
     queen,
-    king
+    king,
+    usedAce
 };
 class Card {
     private:
@@ -30,7 +31,7 @@ class Card {
     public:
 
         Card(Suit s, Value val){
-            if ((s >= heart && s <= spade) && (val >= ace && val <= king)){
+            if ((s >= heart && s <= spade) && (val >= ace && val <= usedAce)){
                 suit = s;
                 value = val;
             }else{
@@ -41,19 +42,22 @@ class Card {
         Card()= default;
 
         int getValue(){
+
+            int result;
             if(value > ace && value < jack){
-                int result = value+1;
-                return result;
+                result = value+1;
             }else if(value >= jack){
-                int result = 10;
-                return result;
+                result = 10;
+            }else if(value == ace){
+                result = 11;
+            }else{
+                result = 1;
             }
-            return 0; //temp return for compiler warnings CHANGE LATER
-            //else{ logic for ace}
+            return result; 
         }
 
         char getValueSymbol(){
-            const char enumArr[] = {'A','2','3','4','5','6','7','8','9','T','J','Q','K'};
+            const char enumArr[] = {'A','2','3','4','5','6','7','8','9','T','J','Q','K','A'};
                 return enumArr[value];
         }
         Suit getSuit(){

@@ -18,6 +18,10 @@ class Player{
             score += newAddition;
         }
 
+        void sub2Score(){//only happens in event of an ace(11) turning into a usedAce(1)
+            score -= 10;
+        }
+
     public:
 
         Player(){}
@@ -48,6 +52,28 @@ class Player{
                 hand.pop_back();
             }
             score = 0;
+        }
+
+        int replaceAce(){
+
+            bool found = false;
+            unsigned index = 0;
+            while(!found && index < hand.size()){
+                if(hand[index]->getValue() == 11){
+                    Card* newAce = new Card(hand[index]->getSuit(), usedAce);
+                    delete hand[index];
+                    hand[index] = newAce;
+                    sub2Score();
+                    found = true;
+                }else{
+                    index++;
+               }
+            }
+            if(found == false){
+                return -1;
+            }else{
+                return 0;
+            }
         }
 
         void printHand(){
