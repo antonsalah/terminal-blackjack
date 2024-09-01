@@ -96,7 +96,4 @@ class Card {
             std::wcout << "|    " <<getValueSymbol()<<"|" << std::endl;
             std::wcout << "'-----'" << std::endl;
         }
-
-
-
 };
