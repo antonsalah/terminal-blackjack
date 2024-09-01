@@ -83,4 +83,8 @@ class Player{
                 }
             }
         }
+
+        int getHandSize(){
+            return hand.size();
+        }
 };

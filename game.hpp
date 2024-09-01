@@ -34,7 +34,7 @@ class Game{
 
         playerOptions getPlayerChoice(){
 
-            std::wcout << "Press H(it), S(tay), Q(uit)" << std::endl;
+            std::wcout << "Press H(it), S(tay), D(ouble Down), Q(uit)" << std::endl;
             char input;
             std::cin >> input;
             switch(input){
@@ -48,6 +48,10 @@ class Game{
 
                 case 'Q':
                     return Quit;
+                    break;
+
+                case 'D':
+                    return DoubleDown;
                     break;
 
                 default:
@@ -113,6 +117,15 @@ class Game{
 
                     case Quit:
                         return -1;
+
+                    case DoubleDown:
+                        if(user.getHandSize() > 2){
+                            std::wcout << "Sorry, you can only Double Down your first Card" << std::endl;
+                        }else{
+                            user.drawCard();
+                            done = true;
+                        }
+                        break;
 
                     default:
                         std::wcout <<"Unknown Command" << std::endl; //might change this to be blank to allow retyping of choice
