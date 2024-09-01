@@ -60,13 +60,18 @@ class Game{
             }
         }
 
-        void playDealer(){
+        void playDealer(){ //might be a good idea to replace running score with dealer.getScore()
             dealer.drawCard();
             unsigned runningScore = dealer.getScore();
             while(runningScore < 17){
                 dealer.drawCard();
                 runningScore = dealer.getScore();
+                if(runningScore > 21){
+                    dealer.replaceAce();
+                    runningScore = dealer.getScore();
+                }
             }
+            
             std::wcout << "The dealer is done" << std::endl;
             printTable();
         }
@@ -125,6 +130,10 @@ class Game{
                             user.drawCard();
                             done = true;
                         }
+                        if(user.getScore() > 21){
+                            user.replaceAce();
+                        }
+                        
                         break;
 
                     default:
