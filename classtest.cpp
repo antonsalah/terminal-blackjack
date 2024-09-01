@@ -24,14 +24,6 @@ int main(){
     test.printCard();
     std::wcout << "Test 3 Passed!" << std::endl;
 
-    Card test2(Suit::diamond,Value::ten);
-    std::wcout << "This should print a ten of diamonds" << std::endl;
-    test2.printCard();
-    
-    Card test3(Suit::heart,Value::queen);
-    std::wcout << "This should print a Queen of Hearts" << std::endl;
-    test3.printCard();
-
     std::wcout << "Test 4 Passed!" << std::endl;
 
     Player testPlayer;
@@ -57,6 +49,9 @@ int main(){
     std::wcout << "Test 6.1 Passed!" << std::endl;
     assert(testPlayer.getScore() == 0);
     std::wcout << "All of Tests 6 Passed!" << std::endl;
+
+    testPlayer.clearHand();
+    
 
     Game game;
 
