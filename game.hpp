@@ -1,11 +1,13 @@
 #include "player.hpp"
 #include "card.hpp" 
+#include <cctype>
 
 enum playerOptions{
     Hit,
     Stay,
     DoubleDown,
     Split,
+    NA, //No Action
     Quit
 };
 
@@ -37,6 +39,7 @@ class Game{
             std::wcout << "Press H(it), S(tay), D(ouble Down), Q(uit)" << std::endl;
             char input;
             std::cin >> input;
+            input = toupper(input);
             switch(input){
                 case 'H':
                     return Hit;
@@ -55,8 +58,8 @@ class Game{
                     break;
 
                 default:
-                    std::wcout << "Unknown input!!! you have choicen to Stay" << std::endl;
-                    return Stay;
+                    std::wcout << "Unknown input, please choose again" << std::endl;
+                    return NA;
             }
         }
 
@@ -137,7 +140,7 @@ class Game{
                         break;
 
                     default:
-                        std::wcout <<"Unknown Command" << std::endl; //might change this to be blank to allow retyping of choice
+                        break;
                 }
             }
             return 0;
