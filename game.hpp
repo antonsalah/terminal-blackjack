@@ -29,11 +29,7 @@ class Game{
             user.drawCard();
             dealer.drawCard();
 
-            std::wcout << "Dealer's Hand" << std::endl;
 
-            dealer.printHand();
-
-            //std::wcout << "Your Hand" << std::endl; 
         }
 
         playerOptions getPlayerChoice(){
@@ -67,8 +63,8 @@ class Game{
                 dealer.drawCard();
                 runningScore = dealer.getScore();
             }
-            std::wcout << "The dealer is done. The dealer's score is " << runningScore << std::endl;
-
+            std::wcout << "The dealer is done" << std::endl;
+            printTable();
         }
 
         int determineWinner(){
@@ -105,6 +101,7 @@ class Game{
                         if(user.getScore() > 21){
                             if(user.replaceAce() == -1){
                                 std::wcout << "Your total is " << user.getScore() << ". You Busted" << std::endl;
+                                printTable();
                                 done = true;
                             }
                         }
