@@ -69,6 +69,7 @@ class Player{
                     index++;
                }
             }
+
             if(found == false){
                 return -1;
             }else{
@@ -86,5 +87,8 @@ class Player{
 
         int getHandSize(){
             return hand.size();
+        }
+
+        void drawThisCard(Suit s, Value v){ //used in debugging only//
         }
 };
