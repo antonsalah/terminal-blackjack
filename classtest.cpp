@@ -51,9 +51,25 @@ int main(){
     std::wcout << "All of Tests 6 Passed!" << std::endl;
 
     testPlayer.clearHand();
-    
 
     Game game;
+
+    testPlayer.drawThisCard(heart,ace);
+    testPlayer.drawThisCard(heart,queen);
+
+    assert(testPlayer.checkBlackjack() == 0);
+
+    std::wcout << "Test 7 Passed!" << std::endl;
+    //make sure hit works
+
+    //make sure stay works
+
+    //make sure ace works
+
+    //make sure double down works
+
+    //make sure double down with ace works
+
 
     game.runGame();
 
