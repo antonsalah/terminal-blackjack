@@ -89,6 +89,17 @@ class Player{
             return hand.size();
         }
 
-        void drawThisCard(Suit s, Value v){ //used in debugging only//
+        void drawThisCard(Suit s, Value val){ //used in debugging only//
+            Card* newCard = new Card(s,val);
+            addCard(newCard);
+        }
+
+        int checkBlackjack(){
+            if(hand[0]->getValueSymbol() == 'A' || hand[1]->getValueSymbol() == 'A'){
+                if(hand[0]->getValue() == 10 || hand[1]->getValue() == 10){
+                    return 0;
+                }
+            }
+            return -1;
         }
 };

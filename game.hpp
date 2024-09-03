@@ -26,12 +26,16 @@ class Game{
             dealer.clearHand();
         }
 
-        void startRound(){
+        int startRound(){
             user.drawCard();
             user.drawCard();
+            if(user.checkBlackjack() == 0){
+                printTable();
+                std::wcout << "Congraulations! You got Blackjack!" << std::endl;
+                return 0;
+            }
             dealer.drawCard();
-
-
+            return -1;
         }
 
         playerOptions getPlayerChoice(){
@@ -63,15 +67,12 @@ class Game{
             }
         }
 
-        void playDealer(){ //might be a good idea to replace running score with dealer.getScore()
+        void playDealer(){ 
             dealer.drawCard();
-            unsigned runningScore = dealer.getScore();
-            while(runningScore < 17){
+            while(dealer.getScore() < 17){
                 dealer.drawCard();
-                runningScore = dealer.getScore();
-                if(runningScore > 21){
+                if(dealer.getScore() > 21){
                     dealer.replaceAce();
-                    runningScore = dealer.getScore();
                 }
             }
             
@@ -159,12 +160,13 @@ class Game{
         void runGame(){
             bool done = false;
             while(!done){
-                startRound();
-                if(play() == -1){
-                    break;
+                if(startRound() == -1){
+                    if(play() == -1){
+                        break;
+                    }
+                    playDealer();
+                    determineWinner(); 
                 }
-                playDealer();
-                determineWinner(); 
                 resetRound();
             }
         }
