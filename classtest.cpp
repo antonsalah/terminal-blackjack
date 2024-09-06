@@ -7,10 +7,17 @@
 #include <fcntl.h>
 #include <assert.h>
 #include "game.hpp"
+#include <ncurses/ncurses.h>
 
 int main(){
     _setmode(_fileno(stdout), _O_U16TEXT);
-    
+/*   
+    initscr();			/* Start curses mode 		  
+	printw("Hello World !!!");	/* Print Hello World		  
+	refresh();			/* Print it on to the real screen 
+	getch();			/* Wait for user input 
+	endwin();			/* End curses mode		  
+
     Card test(Suit::spade,Value::ace);
     Suit testSuit = test.getSuit();
     assert(testSuit == spade);
@@ -22,8 +29,15 @@ int main(){
 
 
     test.printCard();
-    std::wcout << "Test 3 Passed!" << std::endl;
 
+    Card test2(Suit::diamond, Value::king);
+    Sleep(1000);
+    test2.printCard();
+*/
+    Game game;
+    game.runGame();
+
+/*
     std::wcout << "Test 4 Passed!" << std::endl;
 
     Player testPlayer;
@@ -71,7 +85,7 @@ int main(){
     //make sure double down with ace works
 
 
-    game.runGame();
-
+    //game.runGame();
+*/
     return 0;
 }

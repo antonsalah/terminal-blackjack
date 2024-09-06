@@ -90,10 +90,10 @@ class Card {
         }
 
         void printCard(){
-            std::wcout << ".-----."<< std::endl;
-            std::wcout << "|" << getValueSymbol() << "    |" <<std::endl;
-            std::wcout << "|  " << getSuitSymbol() << "  |" << std::endl;
-            std::wcout << "|    " <<getValueSymbol()<<"|" << std::endl;
-            std::wcout << "'-----'" << std::endl;
+            std::wcout << ".-----.\n";
+            std::wcout << "|" << getValueSymbol() << "    |\n";
+            std::wcout << "|  " << getSuitSymbol() << "  |\n";
+            std::wcout << "|    " <<getValueSymbol()<<"|\n";
+            std::wcout << "'-----'\n";
         }
 };

@@ -1,4 +1,4 @@
 clear
 echo "Running Test"
-g++ -o -Wall -g testProgram classtest.cpp -L/mingw64/lib -lncursesw
+g++ -Wall -g classtest.cpp -o testProgram -L/mingw64/lib -lncursesw
 ./testProgram
