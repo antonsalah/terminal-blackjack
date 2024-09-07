@@ -92,12 +92,16 @@ class Card {
             }
         }
 
-        void printCard() {
-            wprintw(stdscr, ".-----.\n");
-            wprintw(stdscr, "| %c   |\n", getValueSymbol());  // Normal char
-            wprintw(stdscr, "|  %lc  |\n", getSuitSymbol());  // Wide char (Unicode heart)
-            wprintw(stdscr, "|   %c |\n", getValueSymbol());  // Normal char
-            wprintw(stdscr, "'-----'\n");
+        void printCard(int x, int y) {//the parameter will need to change to include x and y, probably need to do it in the player section
+            mvprintw(x,y, ".-----.\n");
+            x++;
+            mvprintw(x,y, "| %c   |\n", getValueSymbol());  // Normal char
+            x++;
+            mvprintw(x,y, "|  %lc  |\n", getSuitSymbol());  // Wide char (Unicode heart)
+            x++;
+            mvprintw(x,y, "|   %c |\n", getValueSymbol());  // Normal char
+            x++;
+            mvprintw(x,y, "'-----'\n");
             refresh();
         }
 };
