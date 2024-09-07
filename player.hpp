@@ -77,10 +77,16 @@ class Player{
             }
         }
 
-        void printHand(){
+        void printHand(int side){
+            int x;
+            if(side == 0){
+                x = 20;//player
+            }else{
+                x=0; //dealer
+            }
             if(!hand.empty()){
                 for(unsigned i = 0; i< hand.size(); i++){
-                    hand[i] -> printCard();
+                    hand[i] -> printCard(x,i*10);
                 }
             }
         }
