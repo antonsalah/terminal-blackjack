@@ -149,10 +149,10 @@ class Game{
 
         void printTable(){
             std::wcout << "The Dealer's Hand" << std::endl;
-            dealer.printHand();
+            dealer.printHand(1);
             std::wcout << "The Dealer's Score is " << dealer.getScore() << std::endl;
             std::wcout << "Your Hand" << std::endl;
-            user.printHand();
+            user.printHand(0);
             std::wcout << "Your Score is " << user.getScore() << std::endl;
 
         }
