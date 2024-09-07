@@ -25,17 +25,13 @@ int main(){
     std::wcout << "Test 2 passed!" << std::endl;
 
 
-    test.printCard();
-
-    getch();
-    endwin();
-
+    test.printCard(10,10);
+    Sleep(1000);
     Card test2(Suit::diamond, Value::king);
-   // Sleep(1000);
-    //test2.printCard();
-
+    test2.printCard(10,20);
+    Sleep(1000);
     
-/*
+
     std::wcout << "Test 4 Passed!" << std::endl;
 
     Player testPlayer;
@@ -52,8 +48,12 @@ int main(){
     runningScore += testPlayer.getLatestCard()->getValue();
     assert(testPlayer.getScore() == runningScore);
     std::wcout << "Test 5.3 Passed!" << std::endl;
-    testPlayer.printHand();
 
+    clear();
+    testPlayer.printHand(0);
+    getch();
+    endwin();
+/*
     std::wcout << "All of Test 5 Passed!" << std::endl;
 
     testPlayer.clearHand();
