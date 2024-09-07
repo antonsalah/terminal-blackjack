@@ -7,20 +7,17 @@
 #include <fcntl.h>
 #include <assert.h>
 #include "game.hpp"
-#include <ncurses/ncurses.h>
-
+#include <ncursesw/ncurses.h>
+#include <locale.h>
+#include <wchar.h>
 int main(){
     _setmode(_fileno(stdout), _O_U16TEXT);
-/*   
-    initscr();			/* Start curses mode 		  
-	printw("Hello World !!!");	/* Print Hello World		  
-	refresh();			/* Print it on to the real screen 
-	getch();			/* Wait for user input 
-	endwin();			/* End curses mode		  
+    setlocale(LC_ALL, "en_US.UFT-8"); 
+    initscr();
 
-    Card test(Suit::spade,Value::ace);
+    Card test(Suit::heart,Value::ace);
     Suit testSuit = test.getSuit();
-    assert(testSuit == spade);
+    assert(testSuit == heart);
     std::wcout << "Test 1 passed!" << std::endl;
 
     char testValue = test.getValueSymbol();
@@ -30,13 +27,14 @@ int main(){
 
     test.printCard();
 
-    Card test2(Suit::diamond, Value::king);
-    Sleep(1000);
-    test2.printCard();
-*/
-    Game game;
-    game.runGame();
+    getch();
+    endwin();
 
+    Card test2(Suit::diamond, Value::king);
+   // Sleep(1000);
+    //test2.printCard();
+
+    
 /*
     std::wcout << "Test 4 Passed!" << std::endl;
 

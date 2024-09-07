@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <ncursesw/ncurses.h>
+
 enum Suit{
     heart,
     diamond,   
@@ -40,7 +42,7 @@ class Card {
         }
 
         Card()= default;
-
+       
         int getValue(){
 
             int result;
@@ -64,36 +66,38 @@ class Card {
             return suit;
         }
 
-        std::wstring getSuitSymbol(){
+        const wchar_t getSuitSymbol(){
 
             switch(suit){
                 case heart:
-                    return L"♥";
+                    return 0x2665;
                     break;
-
+                
                 case diamond:
-                    return L"♦";
+                    return 0x2666;
                     break;
 
                 case club:
-                    return L"♣";
+                    return 0x2663;
                     break;
 
                 case spade:
-                    return L"♠";
+                    return 0x2660;
                     break;
 
                 default:
                     std::wcout << "ERROR CANT FIND SYMBOL!!!\n";
-                    return L"?";
+                    return 0x2550;
+                
             }
         }
 
-        void printCard(){
-            std::wcout << ".-----.\n";
-            std::wcout << "|" << getValueSymbol() << "    |\n";
-            std::wcout << "|  " << getSuitSymbol() << "  |\n";
-            std::wcout << "|    " <<getValueSymbol()<<"|\n";
-            std::wcout << "'-----'\n";
+        void printCard() {
+            wprintw(stdscr, ".-----.\n");
+            wprintw(stdscr, "| %c   |\n", getValueSymbol());  // Normal char
+            wprintw(stdscr, "|  %lc  |\n", getSuitSymbol());  // Wide char (Unicode heart)
+            wprintw(stdscr, "|   %c |\n", getValueSymbol());  // Normal char
+            wprintw(stdscr, "'-----'\n");
+            refresh();
         }
 };
