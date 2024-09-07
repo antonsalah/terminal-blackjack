@@ -51,6 +51,8 @@ int main(){
 
     clear();
     testPlayer.printHand(0);
+
+    testPlayer.printHand(1);
     getch();
     endwin();
 /*
