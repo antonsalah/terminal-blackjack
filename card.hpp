@@ -92,14 +92,14 @@ class Card {
             }
         }
 
-        void printCard(int x, int y) {//the parameter will need to change to include x and y, probably need to do it in the player section
+        void printCard(int x, int y) {
             mvprintw(x,y, ".-----.\n");
             x++;
-            mvprintw(x,y, "| %c   |\n", getValueSymbol());  // Normal char
+            mvprintw(x,y, "| %c   |\n", getValueSymbol());
             x++;
-            mvprintw(x,y, "|  %lc  |\n", getSuitSymbol());  // Wide char (Unicode heart)
+            mvprintw(x,y, "|  %lc  |\n", getSuitSymbol());
             x++;
-            mvprintw(x,y, "|   %c |\n", getValueSymbol());  // Normal char
+            mvprintw(x,y, "|   %c |\n", getValueSymbol());
             x++;
             mvprintw(x,y, "'-----'\n");
             refresh();
