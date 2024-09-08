@@ -1,7 +1,12 @@
 #include "player.hpp"
 #include "card.hpp" 
 #include <cctype>
+#include <ncursesw/ncurses.h>
+#include <windows.h>
 
+#define CENTER_X 15
+#define CENTER_Y 50
+#define PLAYER_BOTTOM 30
 enum playerOptions{
     Hit,
     Stay,
@@ -10,7 +15,6 @@ enum playerOptions{
     NA, //No Action
     Quit
 };
-
 class Game{
     private:
 
@@ -24,6 +28,7 @@ class Game{
         void resetRound(){
             user.clearHand();
             dealer.clearHand();
+            clear();
         }
 
         int startRound(){
@@ -31,16 +36,20 @@ class Game{
             user.drawCard();
             if(user.checkBlackjack() == 0){
                 printTable();
-                std::wcout << "Congraulations! You got Blackjack!" << std::endl;
+                mvprintw(CENTER_X,CENTER_Y,"Congrats! you got blackjack!");
+                refresh();
+                Sleep(1000);
                 return 0;
             }
+           
             dealer.drawCard();
             return -1;
         }
 
         playerOptions getPlayerChoice(){
 
-            std::wcout << "Press H(it), S(tay), D(ouble Down), Q(uit)" << std::endl;
+            mvprintw(PLAYER_BOTTOM , CENTER_Y,"Press H(it), S(tay), D(ouble Down), Q(uit)");
+            refresh();
             char input;
             std::cin >> input;
             input = toupper(input);
@@ -69,14 +78,15 @@ class Game{
 
         void playDealer(){ 
             dealer.drawCard();
+            dealer.printHand(1);
             while(dealer.getScore() < 17){
                 dealer.drawCard();
                 if(dealer.getScore() > 21){
                     dealer.replaceAce();
                 }
             }
+
             
-            std::wcout << "The dealer is done" << std::endl;
             printTable();
         }
 
@@ -85,20 +95,28 @@ class Game{
             unsigned userScore = user.getScore();
             unsigned dealerScore = dealer.getScore();
 
+            move(CENTER_X,0);
+            clrtoeol();
+
             if(userScore > 21){
-                std::wcout << "You Busted, Dealer wins" << std::endl;
+                mvprintw(CENTER_X,CENTER_Y, "You Busted, Dealer wins"); 
+                refresh();
                 return -1;
             }else if(dealerScore > 21){
-                std::wcout << "Dealer Busted, You Win" << std::endl;
+                mvprintw(CENTER_X,CENTER_Y, "Dealer Busted, You Win");
+                refresh();
                 return 1;
             }else if(dealerScore == userScore){
-                std::wcout << "Stand, no winners" << std::endl;
+                mvprintw(CENTER_X,CENTER_Y, "Stand, no winner");
+                refresh();
                 return 0;
             }else if( dealerScore > userScore){
-                std::wcout << "Dealer's score is higher, Dealer Wins" << std::endl;
+                mvprintw(CENTER_X,CENTER_Y, "Dealer's score is higher, Dealer wins");
+                refresh();
                 return -1;
             }else{
-                std::wcout << "Your score is higher, You win!" << std::endl;
+                mvprintw(CENTER_X,CENTER_Y,"Your score is higher, You Win!");
+                refresh();
                 return 1;
             }
         }
@@ -113,9 +131,10 @@ class Game{
                         user.drawCard();
                         if(user.getScore() > 21){
                             if(user.replaceAce() == -1){
-                                std::wcout << "Your total is " << user.getScore() << ". You Busted" << std::endl;
+                                mvprintw(CENTER_X,CENTER_Y,"Your total is %d. You Busted ",user.getScore());
                                 printTable();
                                 done = true;
+                                break;
                             }
                         }
                         break;
@@ -129,7 +148,8 @@ class Game{
 
                     case DoubleDown:
                         if(user.getHandSize() > 2){
-                            std::wcout << "Sorry, you can only Double Down your first Card" << std::endl;
+                            mvprintw(CENTER_X,CENTER_Y, "Sorry, you can only Double Down on your first card");
+                            refresh();
                         }else{
                             user.drawCard();
                             done = true;
@@ -148,12 +168,13 @@ class Game{
         }
 
         void printTable(){
-            std::wcout << "The Dealer's Hand" << std::endl;
+            mvprintw(0,30,"The Dealer's Hand");
             dealer.printHand(1);
-            std::wcout << "The Dealer's Score is " << dealer.getScore() << std::endl;
-            std::wcout << "Your Hand" << std::endl;
+            mvprintw(10,30,"The Dealer's Score is %d",dealer.getScore());
+            mvprintw(17,30,"Your Hand");
             user.printHand(0);
-            std::wcout << "Your Score is " << user.getScore() << std::endl;
+            mvprintw(27,30,"Your Score is %d", user.getScore());
+            refresh();
 
         }
 
@@ -167,6 +188,7 @@ class Game{
                     playDealer();
                     determineWinner(); 
                 }
+                getch();
                 resetRound();
             }
         }

@@ -80,13 +80,14 @@ class Player{
         void printHand(int side){
             int x;
             if(side == 0){
-                x = 20;//player
+                x = 20; //player
             }else{
-                x=5; //dealer
+                x=3;    //dealer
             }
             if(!hand.empty()){
                 for(unsigned i = 0; i< hand.size(); i++){
-                    hand[i] -> printCard(x,i*10);
+                    hand[i] -> printCard(x,i*10+ 50);
+                    Sleep(50);
                 }
             }
         }

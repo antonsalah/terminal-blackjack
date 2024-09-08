@@ -10,8 +10,8 @@
 #include <ncursesw/ncurses.h>
 #include <locale.h>
 #include <wchar.h>
-int main(){
-    _setmode(_fileno(stdout), _O_U16TEXT);
+int test(){
+
     setlocale(LC_ALL, "en_US.UFT-8"); 
     initscr();
 
@@ -54,38 +54,28 @@ int main(){
 
     testPlayer.printHand(1);
     getch();
-    endwin();
-/*
+
     std::wcout << "All of Test 5 Passed!" << std::endl;
 
     testPlayer.clearHand();
-    testPlayer.printHand();
+    testPlayer.printHand(0);
     std::wcout << "Test 6.1 Passed!" << std::endl;
     assert(testPlayer.getScore() == 0);
     std::wcout << "All of Tests 6 Passed!" << std::endl;
 
     testPlayer.clearHand();
+    getch();
 
     Game game;
+    game.runGame();
 
+    endwin();
     testPlayer.drawThisCard(heart,ace);
     testPlayer.drawThisCard(heart,queen);
 
     assert(testPlayer.checkBlackjack() == 0);
 
     std::wcout << "Test 7 Passed!" << std::endl;
-    //make sure hit works
 
-    //make sure stay works
-
-    //make sure ace works
-
-    //make sure double down works
-
-    //make sure double down with ace works
-
-
-    //game.runGame();
-*/
     return 0;
 }
