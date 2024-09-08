@@ -122,6 +122,8 @@ class Game{
         }
 
         int play(){
+
+            //-1 == quit, 1 == bust
             bool done = false;
             while(!done){
                 printTable();
@@ -134,7 +136,8 @@ class Game{
                                 mvprintw(CENTER_X,CENTER_Y,"Your total is %d. You Busted ",user.getScore());
                                 printTable();
                                 done = true;
-                                break;
+                                return 1;
+                                //break;
                             }
                         }
                         break;
@@ -180,10 +183,17 @@ class Game{
 
         void runGame(){
             bool done = false;
+            int playVal;
             while(!done){
                 if(startRound() == -1){
-                    if(play() == -1){
+                    playVal = play();
+                    if(playVal == -1){
                         break;
+                    }
+                    if(playVal == 1){
+                        getch();
+                        resetRound();
+                        continue;
                     }
                     playDealer();
                     determineWinner(); 
